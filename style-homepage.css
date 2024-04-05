@@ -176,14 +176,16 @@
   
   .team-members {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    padding-left: 50px;
     align-items: center;
     flex-wrap: wrap;
   }
   
   .team-member {
     text-align: center;
-    flex-basis: calc(33.33% - 20px);
+    padding-left: 30px;
+    /* flex-basis: calc(33.33% - 20px); */
     margin-bottom: 30px;
   }
   
@@ -297,75 +299,75 @@
     }
   }
   .header {
-    background-color: #222222;
-    color: #ccaa66;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-  
-  .header-logo {
-    height: 50px;
-  }
-  
-  .header-nav {
-    display: flex;
-    align-items: center;
-  }
-  
+  background-color: #222222;
+  color: #ccaa66;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.header-logo {
+  height: 50px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-menu li {
+  margin-right: 1rem;
+}
+
+.header-menu a {
+  color: #ccaa66;
+  text-decoration: none;
+}
+
+.header-menu a:hover {
+  color: #ffffff;
+}
+
+.header-menu-icon {
+  display: none;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #ccaa66;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
   .header-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header-menu li {
-    margin-right: 1rem;
-  }
-  
-  .header-menu a {
-    color: #ccaa66;
-    text-decoration: none;
-  }
-  
-  .header-menu a:hover {
-    color: #ffffff;
-  }
-  
-  .header-menu-icon {
     display: none;
   }
-  
-  .bar {
+
+  .header-menu-icon {
     display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    background-color: #ccaa66;
-    transition: transform 0.3s ease;
+    cursor: pointer;
   }
-  
-  @media (max-width: 768px) {
-    .header-menu {
-      display: none;
-    }
-  
-    .header-menu-icon {
-      display: block;
-      cursor: pointer;
-    }
-  
-    .bar:nth-child(1) {
-      transform: translateY(6px);
-    }
-  
-    .bar:nth-child(2) {
-      opacity: 0;
-    }
-  
-    .bar:nth-child(3) {
-      transform: translateY(-6px);
-    }
+
+  .bar:nth-child(1) {
+    transform: translateY(6px);
   }
+
+  .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .bar:nth-child(3) {
+    transform: translateY(-6px);
+  }
+}
