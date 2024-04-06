@@ -30,12 +30,23 @@ function createQuestionElement(question, index) {
 }
  
 
+let currentQuestionIndex = 0;
+const questionElement = document.getElementById("question");
+
 function renderQuestions() {
-    var questionsContainer = document.getElementById("questions");
-    questions.forEach(function(question, index) {
-        questionsContainer.appendChild(createQuestionElement(question, index));
-    });
+  if (currentQuestionIndex < questions.length) {
+    questionElement.textContent = questions[currentQuestionIndex];
+    currentQuestionIndex++;
+  } else {
+    questionElement.textContent = "No more questions!";
+    document.getElementById("nextButton").disabled = true;
+  }
 }
+
+document.getElementById("nextButton").addEventListener("click", displayNextQuestion);
+
+// Display first question initially
+displayNextQuestion();
 
 var answers = [];
 

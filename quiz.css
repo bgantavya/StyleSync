@@ -203,6 +203,7 @@ body {
   .xyz:active{
     background-color: greenyellow;
   }
+  .xyz.clicked
   
   @media (max-width: 768px) {
     .footer-content {
