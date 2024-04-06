@@ -28,7 +28,7 @@ h1 {
 .header {
     background-color: #222222;
     color: #d9b382;
-    padding: 50px 0;
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -125,7 +125,7 @@ h1 {
 }
 .header-title {
     color: #d9b382; /* Gold color */
-    font-size: 48px;
+    font-size: 72px;
     margin-bottom: 10px;
 .yesButton:active,
 .noButton:active {
