@@ -22,11 +22,13 @@ function createQuestionElement(question, index) {
     questionElement.className = "question";
     questionElement.innerHTML = `
         <p>${question}</p>
-        <button onclick="answerQuestion(${index}, 'yes')">Yes</button>
-        <button onclick="answerQuestion(${index}, 'no')">No</button>
+        <button class="xyz"  onclick="answerQuestion(${index}, 'yes')">Yes</button>
+        
+        <button class="xyz" onclick="answerQuestion(${index}, 'no')">No</button>
     `;
     return questionElement;
 }
+ 
 
 function renderQuestions() {
     var questionsContainer = document.getElementById("questions");
@@ -115,56 +117,3 @@ function classifyMBTI() {
 }
 
 renderQuestions();
-
-var redirectUrl = "";
-switch (personalityType) {
-  case "ISTJ":
-    redirectUrl = "https://www.example.com/istj";
-    break;
-  case "ISFJ":
-    redirectUrl = "https://www.example.com/isfj";
-    break;
-  case "INFJ":
-    redirectUrl = "https://www.example.com/infj";
-    break;
-  case "INTJ":
-    redirectUrl = "https://www.example.com/intj";
-    break;;lk n
-  case "ISTP":
-    redirectUrl = "https://www.example.com/istp";
-    break;
-  case "ISFP":
-    redirectUrl = "https://www.example.com/isfp";
-    break;
-  case "INFP":
-    redirectUrl = "https://www.example.com/infp";
-    break;
-  case "INTP":
-    redirectUrl = "https://www.example.com/intp";
-    break;
-  case "ESTJ":
-    redirectUrl = "https://www.example.com/estj";
-    break;
-  case "ESFJ":
-    redirectUrl = "https://www.example.com/esfj";
-    break;
-  case "ENFJ":
-    redirectUrl = "https://www.example.com/enfj";
-    break;
-  case "ENTJ":
-    redirectUrl = "https://www.example.com/entj";
-    break;
-  case "ESTP":
-    redirectUrl = "https://www.example.com/estp";
-    break;
-  case "ESFP":
-    redirectUrl = "https://www.example.com/esfp";
-    break;
-  case "ENFP":
-    redirectUrl = "https://www.example.com/enfp";
-    break;
-  case "ENTP":
-    redirectUrl = "https://www.example.com/entp";
-    break;
-}
-window.location.href = redirectUrl;
