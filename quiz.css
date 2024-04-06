@@ -39,6 +39,7 @@ h1 {
 
 .button:hover {
     background-color: #e6c09c;
+    color: #e6c09c;
 }
 
 .question {
