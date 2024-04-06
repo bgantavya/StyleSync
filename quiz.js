@@ -117,3 +117,57 @@ function classifyMBTI() {
 }
 
 renderQuestions();
+
+
+var redirectUrl = "";
+switch (personalityType) {
+  case "ISTJ":
+    redirectUrl = "assets/istj.html";
+    break;
+  case "ISFJ":
+    redirectUrl = "assets/isfj.html";
+    break;
+  case "INFJ":
+    redirectUrl = "assets/infj.html";
+    break;
+  case "INTJ":
+    redirectUrl = "assets/intj.html";
+    break;;lk n
+  case "ISTP":
+    redirectUrl = "assets/istp.html";
+    break;
+  case "ISFP":
+    redirectUrl = "assets/isfp.html";
+    break;
+  case "INFP":
+    redirectUrl = "assets/infp.html";
+    break;
+  case "INTP":
+    redirectUrl = "assets/intp.html";
+    break;
+  case "ESTJ":
+    redirectUrl = "assets/estj.html";
+    break;
+  case "ESFJ":
+    redirectUrl = "assets/esfj.html";
+    break;
+  case "ENFJ":
+    redirectUrl = "assets/enfj.html";
+    break;
+  case "ENTJ":
+    redirectUrl = "assets/entj.html";
+    break;
+  case "ESTP":
+    redirectUrl = "assets/estp.html";
+    break;
+  case "ESFP":
+    redirectUrl = "assets/esfp.html";
+    break;
+  case "ENFP":
+    redirectUrl = "assets/enfp.html";
+    break;
+  case "ENTP":
+    redirectUrl = "assets/entp.html";
+    break;
+}
+window.location.href = redirectUrl;
