@@ -200,8 +200,8 @@ body {
     color: #ffffff;
   }
   
-  .xyz{
-    background-color: red;
+  .xyz:active{
+    background-color: greenyellow;
   }
   
   @media (max-width: 768px) {
@@ -214,3 +214,4 @@ body {
       margin-top: 20px;
     }
   }
+  
