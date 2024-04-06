@@ -34,9 +34,9 @@ h1 {
     align-items: center;
 }
 
-.header-logo img {
+/* .header-logo img {
     height: 50px; /* Applied height to the logo image */
-}
+} */
 
 .header-nav {
     background-color: #222222;
