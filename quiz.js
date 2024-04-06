@@ -57,19 +57,68 @@ function classifyMBTI() {
     var personalityType = "";
     
     // Determine personality type based on answers
-    if (introvert && sensing && thinking && judging) {
-        personalityType = "ISTJ";
-    } else if (introvert && sensing && !thinking && judging) {
-        personalityType = "ISFJ";
-    } else if (!introvert && sensing && !thinking && !judging) {
-        personalityType = "ESTP";
-    } else if (!introvert && sensing && !thinking && judging) {
-        personalityType = "ESTJ";
-    } else if (!introvert && !sensing && thinking && judging) {
-        personalityType = "ENTJ";
+    if (introvert) {
+        if (sensing) {
+            if (thinking) {
+                if (judging) {
+                    personalityType = "ISTJ";
+                } else {
+                    personalityType = "ISTP";
+                }
+            } else {
+                if (judging) {
+                    personalityType = "ISFJ";
+                } else {
+                    personalityType = "ISFP";
+                }
+            }
+        } else {
+            if (thinking) {
+                if (judging) {
+                    personalityType = "INTJ";
+                } else {
+                    personalityType = "INTP";
+                }
+            } else {
+                if (judging) {
+                    personalityType = "INFJ";
+                } else {
+                    personalityType = "INFP";
+                }
+            }
+        }
     } else {
-        personalityType = "Other"; // Default for other cases
+        if (sensing) {
+            if (thinking) {
+                if (judging) {
+                    personalityType = "ESTJ";
+                } else {
+                    personalityType = "ESTP";
+                }
+            } else {
+                if (judging) {
+                    personalityType = "ESFJ";
+                } else {
+                    personalityType = "ESFP";
+                }
+            }
+        } else {
+            if (thinking) {
+                if (judging) {
+                    personalityType = "ENTJ";
+                } else {
+                    personalityType = "ENTP";
+                }
+            } else {
+                if (judging) {
+                    personalityType = "ENFJ";
+                } else {
+                    personalityType = "ENFP";
+                }
+            }
+        }
     }
+   
 
     // Redirect based on personality type
     var redirectUrl = "assets/" + personalityType.toLowerCase() + ".html";
