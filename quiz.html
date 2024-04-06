@@ -1,140 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="quiz.css">
-    </head>
-    <body>
-      
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MBTI Quiz</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="QUIZPAGE">
         <header class="header">
-            <div class="header-logo">
-              <a href="#"><img src="assets/logon.jpeg" style="width: 200px;" alt="Style Sync Logo"></a>
-            </div>
-            <nav class="header-nav">
-              <ul class="header-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#featured-styles">Featured Styles</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#about-us">About Us</a></li>
-              </ul>
-            </nav>
-            <div class="header-menu-icon">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </div>
-          </header>
-        
-          <div class="QUIZPAGE">
-          <header class="header">
             <div class="container">
-              <div class="header-content">
-                <h1 class="header-title">QUIZ</h1>
-                <p class="header-subtitle"> MBTI Personality Analysis </p>
-              </div>
+                <div class="header-content">
+                    <h1 class="header-title">QUIZ</h1>
+                    <p class="header-subtitle">MBTI Personality Analysis</p>
+                </div>
             </div>
-          </header>
-              <div class="container">
-                  <h1>MBTI Personality Classifier</h1>
-                  <p>Welcome to the MBTI personality classifier! Please answer each question.</p>
-                  <div id="questions"></div>
-                  <br>
-                  <br>
-                  <button onclick="classifyMBTI()">Submit</button>
-                  <div id="result"></div>
-              </div>
-          
-              
-              <div id="questions"></div>
-              <button id="nextButton">Next Question</button>
-              <div id="result"></div>
-              
-              <script>
-                  var questions = [
-                      "Do you prefer to spend time alone rather than with a large group of people?",
-                      "Do you focus on the present rather than thinking about the future?",
-                      "Do you trust reason rather than feelings?",
-                      "Do you prefer to have a few close friends rather than many acquaintances?",
-                      "Do you prefer to make decisions based on facts rather than values?",
-                      "Do you prefer to follow a plan rather than leave things to chance?",
-                      "Do you prefer to be organized rather than adapt to changing circumstances?",
-                      "Do you prefer to express yourself through actions rather than words?",
-                      "Do you prefer to stick to your routines rather than trying new things?",
-                      "Do you prefer to be decisive rather than open-minded?",
-                      "Do you prefer to be firm and assertive rather than gentle and accommodating?",
-                      "Do you prefer to be focused and determined rather than flexible and spontaneous?",
-                      "Do you prefer to be independent rather than rely on others?",
-                      "Do you prefer to be objective rather than subjective?",
-                      "Do you prefer to be reserved rather than outgoing?",
-                      "Do you prefer to be systematic rather than casual?"
-                  ];
-              
-                  var currentQuestionIndex = 0;
-                  var answers = [];
-              
-                  function createQuestionElement(question) {
-                      var questionElement = document.createElement("div");
-                      questionElement.className = "question";
-                      questionElement.innerHTML = `
-                          <p>${question}</p>
-                          <button class="yesButton" onclick="answerQuestion('yes')">Yes</button>
-                          <button class="noButton" onclick="answerQuestion('no')">No</button>
-                      `;
-                      return questionElement;
-                  }
-              
-                  function renderQuestion() {
-                      var questionsContainer = document.getElementById("questions");
-                      questionsContainer.innerHTML = '';
-                      questionsContainer.appendChild(createQuestionElement(questions[currentQuestionIndex]));
-                  }
-              
-                  function answerQuestion(answer) {
-                      answers[currentQuestionIndex] = answer;
-                      currentQuestionIndex++;
-                      if (currentQuestionIndex < questions.length) {
-                          renderQuestion();
-                      } else {
-                          classifyMBTI();
-                      }
-                  }
-              
-                  function classifyMBTI() {
-                      var introvert = answers[0] === 'yes';
-                      var sensing = answers[1] === 'yes';
-                      var thinking = answers[2] === 'yes';
-                      var judging = answers[3] === 'yes';
-              
-                      var personalityType = "";
-                      
-                      // Determine personality type based on answers
-                      if (introvert && sensing && thinking && judging) {
-                          personalityType = "ISTJ";
-                      } else if (introvert && sensing && !thinking && judging) {
-                          personalityType = "ISFJ";
-                      } else if (!introvert && sensing && !thinking && !judging) {
-                          personalityType = "ESTP";
-                      } else if (!introvert && sensing && !thinking && judging) {
-                          personalityType = "ESTJ";
-                      } else if (!introvert && !sensing && thinking && judging) {
-                          personalityType = "ENTJ";
-                      } else {
-                          personalityType = "Other"; // Default for other cases
-                      }
-              
-                      // Redirect based on personality type
-                      var redirectUrl = "assets/" + personalityType.toLowerCase() + ".html";
-                      window.location.href = redirectUrl;
-                  }
-              
-                  renderQuestion();
-              </script>
-
-      </div>
-    </body>
+        </header>
+        <div class="container">
+            <h1>MBTI Personality Classifier</h1>
+            <p>Welcome to the MBTI personality classifier! Please answer each question.</p>
+            <div id="questions"></div>
+            <button id="nextButton" class="button">Next Question</button>
+            <div id="result"></div>
+        </div>
+    </div>
+    <script src="quiz.js"></script>
+</body>
 </html>
