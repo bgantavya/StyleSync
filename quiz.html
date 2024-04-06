@@ -53,7 +53,6 @@
               <div id="questions"></div>
                 <button id="nextButton">Next Question</button>
                 <div id="result"></div>
-                
                 <script>
                     var questions = [
                         "Do you prefer to spend time alone rather than with a large group of people?",
@@ -105,15 +104,23 @@
                     }
                 
                     function classifyMBTI() {
+                        // Logic to determine personality type based on answers
                         var introvert = answers[0] === 'yes';
                         var sensing = answers[1] === 'yes';
                         var thinking = answers[2] === 'yes';
                         var judging = answers[3] === 'yes';
                 
-                        var personalityType = ""; // Placeholder for the personality type
-                
                         // Logic to determine personality type based on answers
-                        
+                        var personalityType = "";
+                        if (introvert && sensing && thinking && judging) {
+                            personalityType = "ISTJ";
+                        } else if (introvert && sensing && !thinking && judging) {
+                            personalityType = "ISFJ";
+                        } else if (introvert && sensing && thinking && !judging) {
+                            personalityType = "ISTP";
+                        }
+                        // Add more conditions for other personality types
+                
                         var redirectUrl = "";
                         switch (personalityType) {
                             case "ISTJ":
@@ -122,48 +129,10 @@
                             case "ISFJ":
                                 redirectUrl = "assets/isfj.html";
                                 break;
-                            case "INFJ":
-                                redirectUrl = "assets/infj.html";
-                                break;
-                            case "INTJ":
-                                redirectUrl = "assets/intj.html";
-                                break;
                             case "ISTP":
                                 redirectUrl = "assets/istp.html";
                                 break;
-                            case "ISFP":
-                                redirectUrl = "assets/isfp.html";
-                                break;
-                            case "INFP":
-                                redirectUrl = "assets/infp.html";
-                                break;
-                            case "INTP":
-                                redirectUrl = "assets/intp.html";
-                                break;
-                            case "ESTJ":
-                                redirectUrl = "assets/estj.html";
-                                break;
-                            case "ESFJ":
-                                redirectUrl = "assets/esfj.html";
-                                break;
-                            case "ENFJ":
-                                redirectUrl = "assets/enfj.html";
-                                break;
-                            case "ENTJ":
-                                redirectUrl = "assets/entj.html";
-                                break;
-                            case "ESTP":
-                                redirectUrl = "assets/estp.html";
-                                break;
-                            case "ESFP":
-                                redirectUrl = "assets/esfp.html";
-                                break;
-                            case "ENFP":
-                                redirectUrl = "assets/enfp.html";
-                                break;
-                            case "ENTP":
-                                redirectUrl = "assets/entp.html";
-                                break;
+                            // Add cases for other personality types
                         }
                         window.location.href = redirectUrl;
                     }
