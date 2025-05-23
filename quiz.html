@@ -1,51 +1,305 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MBTI Quiz</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="quiz.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MBTI Quiz</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="quiz.css">
+  <style>
+    :root {
+      --bg: #222222;
+      --fg: #d9b382;
+      --accent: #bfa77a;
+      --border: #8c7a5a;
+      --card-bg: #2d2a26;
+      --shadow: 0 8px 32px 0 rgba(34,34,34,0.5);
+      --font-serif: 'Playfair Display', 'Georgia', serif;
+      --font-sans: 'Montserrat', 'Arial', sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-serif);
+      margin: 0;
+      min-height: 100vh;
+      letter-spacing: 0.03em;
+    }
+    #bg {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #222 60%, #2d2a26 100%);
+      animation: bgFade 2s ease;
+    }
+    @keyframes bgFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .header {
+      background: rgba(34,34,34,0.95);
+      border-bottom: 2px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 0.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      animation: headerSlide 1s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes headerSlide {
+      from { transform: translateY(-60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* .header-logo img {
+      /* border-radius: 50%; */
+      /* border: 3px solid var(--accent); */
+      /* box-shadow: 0 2px 12px #0008; */
+      /* transition: transform 0.3s; 
+    } */
+    .header-logo img:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+    .header-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .header-nav a {
+      color: var(--fg);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .header-nav a:hover {
+      background: var(--accent);
+      color: #222;
+    }
+    .header-menu-icon {
+      display: none;
+    }
+    .QUIZPAGE .header {
+      background: none;
+      border: none;
+      box-shadow: none;
+      margin-top: 2rem;
+    }
+    .header-title {
+      font-size: 4rem;
+      color: var(--fg);
+      font-family: var(--font-serif);
+      letter-spacing: 0.1em;
+      text-shadow: 0 2px 12px #000a;
+      margin-bottom: 0.2em;
+      animation: fadeInDown 1.2s;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .header-subtitle {
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-family: var(--font-sans);
+      margin-bottom: 1.5em;
+      letter-spacing: 0.08em;
+      animation: fadeIn 2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: var(--card-bg);
+      border-radius: 24px;
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 2.5rem 2rem;
+      animation: cardPop 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes cardPop {
+      from { transform: scale(0.95) translateY(40px); opacity: 0;}
+      to { transform: scale(1) translateY(0); opacity: 1;}
+    }
+    .container h1 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--fg);
+      margin-bottom: 0.5em;
+      text-align: center;
+      letter-spacing: 0.07em;
+    }
+    .container p {
+      color: var(--accent);
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 2em;
+    }
+    #questions {
+      margin-bottom: 2em;
+      animation: fadeIn 1.5s;
+    }
+    #result {
+      font-size: 1.3rem;
+      color: var(--fg);
+      background: rgba(217,179,130,0.08);
+      border: 1.5px solid var(--accent);
+      border-radius: 14px;
+      padding: 1.2em;
+      margin-top: 1.5em;
+      text-align: center;
+      min-height: 2em;
+      box-shadow: 0 2px 8px #0004;
+      animation: fadeIn 1.5s;
+    }
+    /* Old money style for quiz questions and options */
+    .question-card {
+      background: linear-gradient(120deg, #2d2a26 90%, #3a3327 100%);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      margin-bottom: 1.5em;
+      padding: 1.5em 1em;
+      box-shadow: 0 2px 12px #0006;
+      transition: box-shadow 0.2s;
+      animation: cardPop 1.2s;
+    }
+    .question-card:hover {
+      box-shadow: 0 6px 24px #000a;
+    }
+    .question-title {
+      font-size: 1.3rem;
+      color: var(--fg);
+      font-family: var(--font-serif);
+      margin-bottom: 1em;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+    .option-label {
+      display: flex;
+      align-items: center;
+      background: rgba(217,179,130,0.07);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 0.7em 1em;
+      font-family: var(--font-sans);
+      color: var(--fg);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+      font-size: 1.08rem;
+    }
+    .option-label:hover, .option-label input:checked + span {
+      background: var(--accent);
+      color: #222;
+      border-color: var(--fg);
+    }
+    .option-label input[type="radio"] {
+      accent-color: var(--accent);
+      margin-right: 1em;
+    }
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+      background: #2d2a26;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 8px;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container { padding: 1.2rem 0.5rem; }
+      .header-title { font-size: 2.2rem; }
+      .header-logo img { width: 120px; }
+      .header-nav ul { gap: 1rem; }
+    }
+  </style>
+  <!-- Old money fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: #222222;">
-    <div id="bg">
-    <header class="header">
-        <div class="header-logo">
-          <img src="assets/logon.jpeg" style="width: 200px;" alt="Style Sync Logo">
-        </div>
-        <nav class="header-nav">
-          <ul class="header-menu">
-            <li><a href="index.html#home">Home</a></li>
-            <li><a href="index.html#how-it-works">How It Works</a></li>
-            <li><a href="index.html#featured-styles">Featured Styles</a></li>
-            <li><a href="index.html#testimonials">Testimonials</a></li>
-            <li><a href="index.html#about-us">About Us</a></li>
-          </ul>
-        </nav>
-        <div class="header-menu-icon">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-      </header>
-    <div class="QUIZPAGE">
-        <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <h1 class="header-title" style="font-size: 72px;">QUIZ</h1>
-                    <p class="header-subtitle">MBTI Personality Analysis</p>
-                </div>
-            </div>
-        </header>
-        </div>
-        <div class="container">
-            <h1>MBTI Personality Classifier</h1>
-            <p>Welcome to the MBTI personality classifier! Please answer each question.</p>
-            <div id="questions"></div>
-            <div id="result"></div>
-        </div>
+<body>
+  <div id="bg">
+  <header class="header">
+    <div class="header-logo">
+      <img src="logo.jpeg" style="width: 200px;" alt="Style">
     </div>
-    <script src="quiz.js"></script>
+    <nav class="header-nav">
+      <ul class="header-menu">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="index.html#featured-styles">Featured Styles</a></li>
+      <li><a href="index.html#testimonials">Testimonials</a></li>
+      <li><a href="index.html#about-us">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="header-menu-icon">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    </header>
+  <div class="QUIZPAGE">
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="header-title">QUIZ</h1>
+          <p class="header-subtitle">MBTI Personality Analysis</p>
+        </div>
+      </div>
+    </header>
+    </div>
+    <div class="container">
+      <h1>MBTI Personality Classifier</h1>
+      <p>Welcome to the MBTI personality classifier! Please answer each question.</p>
+      <div id="questions"></div>
+      <div id="result"></div>
+    </div>
+  </div>
+  <script>
+  // Example: Animate quiz questions with old money style
+  // You can adapt this to your quiz.js logic
+  // This demo renders 2 sample questions for illustration
+  const questionsData = [
+    {
+      question: "You prefer to spend your free time:",
+      options: ["Reading classic literature", "Attending social gatherings", "Exploring nature", "Working on personal projects"]
+    },
+    {
+      question: "When making decisions, you rely more on:",
+      options: ["Logic and analysis", "Personal values", "Advice from others", "Gut feeling"]
+    }
+  ];
+  function renderQuestions() {
+    const questionsDiv = document.getElementById('questions');
+    questionsDiv.innerHTML = '';
+    questionsData.forEach((q, idx) => {
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      card.style.animationDelay = (0.2 * idx) + 's';
+      card.innerHTML = `
+        <div class="question-title">${q.question}</div>
+        <div class="options">
+          ${q.options.map((opt, i) => `
+            <label class="option-label">
+              <input type="radio" name="q${idx}" value="${opt}">
+              <span>${opt}</span>
+            </label>
+          `).join('')}
+        </div>
+      `;
+      questionsDiv.appendChild(card);
+    });
+  }
+  renderQuestions();
+  </script>
+  <script src="quiz.js"></script>
 </body>
 </html>
